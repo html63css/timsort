@@ -1,9 +1,8 @@
-ï»¿#include <iostream>
+#include <iostream>
 #include <vector>
-//#include "Stack.cpp"
+#include "Stack.cpp"
 #include <fstream>
 using namespace std;
-
 int GetMinrun(int n)
 {
     int r = 0;
@@ -32,9 +31,9 @@ void insertion_sort(vector <int>& arr, int n)
 
 vector <int> merge(vector <int> arr1, vector <int> arr2)
 {
-    unsigned int i(0), j(0);
+    int i(0), j(0);
     vector <int> final_arr;
-    for (; i < arr1.size() && j < arr2.size();)
+    for (;i < arr1.size() && j < arr2.size();)
     {
         if (arr1[i] < arr2[j])
         {
@@ -58,14 +57,14 @@ vector <int> merge(vector <int> arr1, vector <int> arr2)
     return final_arr;
 }
 
-void timsort(vector<int>& arr, const unsigned int n)
+void timsort(vector<int>& arr, const int n)
 {
-    unsigned int minrun = GetMinrun(n);
+    int minrun = GetMinrun(n);
     vector <int> subarray[2];
     int actual_subarray = 0;
-    bool orientation = (arr[0] <= arr[1]) ? 0 : 1; // 0 - Ð²Ð¾Ð·Ñ€Ð°ÑÑ‚Ð°Ð½Ð¸Ðµ.1 - ÑƒÐ±Ñ‹Ð²Ð°Ð½Ð¸Ðµ
+    bool orientation = (arr[0] <= arr[1]) ? 0 : 1; // 0 - âîçðàñòàíèå.1 - óáûâàíèå
     subarray[actual_subarray].push_back(arr[0]);
-    for (unsigned int i = 1; i < n; ++i)
+    for (int i = 1; i < n; ++i)
     {
         if ((arr[i] >= arr[i - 1] && !orientation) || (arr[i] < arr[i - 1] && orientation))
         {
@@ -73,8 +72,8 @@ void timsort(vector<int>& arr, const unsigned int n)
         }
         else
         {
-            orientation = !orientation;
-            while (subarray[actual_subarray].size() < minrun && (subarray[0].size() + subarray[1].size()) < n)
+            orientation != orientation;
+            while (subarray[actual_subarray].size() < minrun && (subarray[0].size()+ subarray[1].size()) < n)
             {
                 subarray[actual_subarray].push_back(arr[i]);
                 ++i;
@@ -84,7 +83,7 @@ void timsort(vector<int>& arr, const unsigned int n)
             {
                 vector<int> buff = merge(subarray[0], subarray[1]);
                 subarray[0].clear();
-                for (unsigned int i = 0; i < buff.size(); ++i)
+                for (int i = 0; i < buff.size(); ++i)
                 {
                     subarray[0].push_back(buff[i]);
                 }
@@ -94,7 +93,7 @@ void timsort(vector<int>& arr, const unsigned int n)
             --i;
         }
     }
-    for (unsigned int i = 0; i < n; ++i)
+    for (int i = 0; i < n ;++i)
     {
         arr[i] = subarray[0][i];
     }
@@ -125,7 +124,7 @@ int main()
     stream_input.close();
     timsort(ARR, ARR.size());
     std::ofstream stream_output("output" + index + ".txt");
-    for (unsigned int i = 0; i < ARR.size(); ++i)
+    for (int i = 0; i < ARR.size(); ++i)
     {
         stream_output << ARR[i] << ' ';
     }
